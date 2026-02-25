@@ -5,17 +5,19 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../Slices/UserSlice";
 export default function Login() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const navigate = useNavigate();
 
   const handlechange = (e) => {
     const { name, value } = e.target;
     console.log(name, "-->", value);
     setFormData({ ...formData, [name]: value });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -32,6 +34,7 @@ export default function Login() {
     );
     navigate("/app/dashboard");
   };
+
   return (
     <div className="w-screen h-screen flex justify-center items-center">
       <form onSubmit={handleSubmit}>
